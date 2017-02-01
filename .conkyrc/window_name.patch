@@ -1,0 +1,158 @@
+diff --git a/src/conky.h b/src/conky.h
+index 447e2c6..e6faaa0 100644
+--- a/src/conky.h
++++ b/src/conky.h
+@@ -133,6 +133,10 @@ struct monitor_info {
+ 	int current;
+ };
+ 
++struct window_info {
++		std::string name;
++};
++
+ struct desktop_info {
+         int current;
+         int number;
+@@ -143,6 +147,7 @@ struct desktop_info {
+ struct x11_info {
+ 	struct monitor_info monitor;
+ 	struct desktop_info desktop;
++	struct window_info window;
+ };
+ 
+ #endif /* BUILD_X11 */
+diff --git a/src/core.cc b/src/core.cc
+index d4b3596..e448bfa 100644
+--- a/src/core.cc
++++ b/src/core.cc
+@@ -1089,6 +1089,8 @@ struct text_object *construct_text_object(char *s, const char *arg,
+ 		obj->callbacks.print = &print_desktop_number;
+ 	END OBJ(desktop_name, 0)
+ 		obj->callbacks.print = &print_desktop_name;
++	END OBJ(window_name, 0)
++		obj->callbacks.print = &print_window_name;
+ #endif /* BUILD_X11 */
+ 	END OBJ_ARG(format_time, 0, "format_time needs a pid as argument")
+ 		obj->sub = (text_object*)malloc(sizeof(struct text_object));
+diff --git a/src/x11.cc b/src/x11.cc
+index 36052f0..cf5db1d 100644
+--- a/src/x11.cc
++++ b/src/x11.cc
+@@ -423,6 +423,7 @@ static void init_X11()
+ 	info.x11.desktop.number = 1;
+ 	info.x11.desktop.all_names.clear();
+ 	info.x11.desktop.name.clear();
++	info.x11.window.name.clear();
+ 
+ 	screen = DefaultScreen(display);
+ 	display_width = DisplayWidth(display, screen);
+@@ -1110,10 +1111,56 @@ static inline void get_x11_desktop_current_name(const std::string &names)
+ 	}
+ }
+ 
++//Get current window name
++static inline void get_x11_window_name(Display *current_display, Window root, Atom atom)
++{
++	static Atom atom_wm_name = XInternAtom(current_display, "_NET_WM_NAME", True);
++
++	Atom actual_type;
++	int actual_format;
++	unsigned long nitems;
++	unsigned long bytes_after;
++	unsigned char *prop = NULL;
++	struct information *current_info = &info;
++	current_info->x11.window.name.clear();
++
++	unsigned long window = 0;
++
++	if ( (XGetWindowProperty(current_display, root, atom,
++					0, (~0L), False, AnyPropertyType,
++					&actual_type, &actual_format, &nitems,
++					&bytes_after, &prop) == Success) &&
++			(prop != 0) ) {
++
++		window = *(unsigned long *) prop;
++	}
++	if(prop) {
++		XFree(prop);
++		prop = NULL;
++	}
++
++	if (window == 0) {
++		return;
++	}
++	if ( (XGetWindowProperty(current_display, (Window) window, atom_wm_name,
++					0, (~0L), False, ATOM(UTF8_STRING),
++					&actual_type, &actual_format, &nitems,
++					&bytes_after, &prop) == Success) &&
++			(prop != 0) &&
++			(actual_type == ATOM(UTF8_STRING)) && (actual_format == 8) ) {
++
++		current_info->x11.window.name = reinterpret_cast<const char *>(prop);
++	}
++	if(prop) {
++		XFree(prop);
++		prop = NULL;
++	}
++}
++
+ void get_x11_desktop_info(Display *current_display, Atom atom)
+ {
+ 	Window root;
+-	static Atom atom_current, atom_number, atom_names;
++	static Atom atom_current, atom_number, atom_names, atom_window_name;
+ 	struct information *current_info = &info;
+ 	XWindowAttributes window_attributes;
+ 
+@@ -1124,10 +1171,12 @@ void get_x11_desktop_info(Display *current_display, Atom atom)
+ 		atom_current = XInternAtom(current_display, "_NET_CURRENT_DESKTOP", True);
+ 		atom_number  = XInternAtom(current_display, "_NET_NUMBER_OF_DESKTOPS", True);
+ 		atom_names   = XInternAtom(current_display, "_NET_DESKTOP_NAMES", True);
++		atom_window_name = XInternAtom(current_display, "_NET_ACTIVE_WINDOW", True);
+ 		get_x11_desktop_current(current_display, root, atom_current);
+ 		get_x11_desktop_number(current_display, root, atom_number);
+ 		get_x11_desktop_names(current_display, root, atom_names);
+ 		get_x11_desktop_current_name(current_info->x11.desktop.all_names);
++		get_x11_window_name(current_display, root, atom_window_name);
+ 
+ 		/* Set the PropertyChangeMask on the root window, if not set */
+ 		XGetWindowAttributes(display, root, &window_attributes);
+@@ -1146,6 +1195,8 @@ void get_x11_desktop_info(Display *current_display, Atom atom)
+ 		} else if (atom == atom_names) {
+ 			get_x11_desktop_names(current_display, root, atom_names);
+ 			get_x11_desktop_current_name(current_info->x11.desktop.all_names);
++		} else if (atom == atom_window_name) {
++			get_x11_window_name(current_display, root, atom_window_name);
+ 		}
+ 	}
+ }
+@@ -1207,6 +1258,17 @@ void print_desktop_name(struct text_object *obj, char *p, int p_max_size)
+ 	}
+ }
+ 
++void print_window_name(struct text_object *obj, char *p, int p_max_size)
++{
++	(void)obj;
++
++	if(not out_to_x.get(*state)) {
++		strncpy(p, NOT_IN_X, p_max_size);
++	} else {
++		strncpy(p, info.x11.window.name.c_str(), p_max_size);
++	}
++}
++
+ #ifdef OWN_WINDOW
+ /* reserve window manager space */
+ void set_struts(int sidenum)
+diff --git a/src/x11.h b/src/x11.h
+index d52df1f..fd690ae 100644
+--- a/src/x11.h
++++ b/src/x11.h
+@@ -115,6 +115,7 @@ void print_monitor_number(struct text_object *, char *, int);
+ void print_desktop(struct text_object *, char *, int);
+ void print_desktop_number(struct text_object *, char *, int);
+ void print_desktop_name(struct text_object *, char *, int);
++void print_window_name(struct text_object *, char *, int);
+ 
+ #ifdef BUILD_XDBE
+ void xdbe_swap_buffers(void);

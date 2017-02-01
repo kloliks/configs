@@ -1,0 +1,88 @@
+conky.config = {
+-- vim:filetype=conkyrc
+
+-- — SETTINGS —
+	background = false,
+	update_interval = 1,
+	cpu_avg_samples = 1,
+	net_avg_samples = 2,
+	double_buffer = true,
+	no_buffers = true,
+	text_buffer_size = 1024,
+
+-- — WINDOW —
+	own_window = true,
+	own_window_type = 'panel',
+	own_window_colour = '#262626',
+	own_window_argb_visual = true,
+	own_window_argb_value = 230,
+	own_window_transparent = false,
+	own_window_hints = 'undecorated,sticky,skip_taskbar,skip_pager,below',
+
+-- — BORDER —
+	border_inner_margin = 1,
+	border_outer_margin = 1,
+
+-- — SIZE —
+	minimum_width = 1920,
+--maximum_width 320
+
+-- — ALIGNMENT —
+	alignment = 'top_middle',
+	gap_x = 0,
+	gap_y = 0,
+
+-- — GRAPHIC —
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = true,
+
+-- — TEXT —
+	use_xft = true,
+	font = 'Ubuntu Mono:size=12:style=Bold:antialias=true',
+	xftalpha = 1.0,
+	uppercase = false,
+	override_utf8_locale = true,
+	default_color = '#fff8dc',
+
+-- — Colors —
+	color0 = '#fff8dc',
+	color1 = '#C18C24',
+	color2 = '#000000',
+	color3 = '#268BD2',
+  
+  color4 = '#6c71c4',
+  color5 = '#2aa198',
+  
+  color8 = '#859900',
+  color9 = '#cb4b16',
+
+-- — Lua —
+  lua_load = '~/.conkyrc/colours_print.lua',
+};
+
+conky.text = [[
+ ${color3}[${uptime_short}]${color3} \
+[${color5}cpu ${lua_parse colour_int ${cpu} 50 80}${color5}%${color3}] \
+[${color5}mem ${lua_parse colour_int ${memperc} 50 80}${color5}%${color3}] \
+[${color5}sda ${lua_parse colour_bytes ${diskio sda} 100 150 ${color5}}${color3}] \
+[${color5}sdb ${lua_parse colour_bytes ${diskio sdb} 100 150 ${color5}}${color3}] \
+[${color5}eno1 ${lua_parse colour_float ${downspeedf eno1} 0.3 0.7}${color5}\
+/${lua_parse colour_float ${upspeedf eno1} 0.3 0.7}${color5} KiB${color3}]
+${voffset -16}${alignc}\
+${color1}${time %A} ${color0}${time %d %b %Y} ${color1}${time %T}
+${voffset -16}${alignr}\
+${color4}${lua substring ${window_name} 0 90}${color0} $$ ${color3}[${desktop_name}] 
+]];
+
+
+
+-- ${color0}${font FontAwesome:size=10}${voffset -1}${voffset +1}${font}\
+-- ${color0}${font FontAwesome:size=10}${voffset -1}${font}${voffset -1}\
+
+-- ${color0}${cpu cpu0}% \
+-- ${color0}${mem}/${memmax} (${memperc}%) \
+-- ${color0}${diskio} \
+-- ${color0}${totaldown enp3s0}/${totalup enp3s0} \
+
