@@ -1,0 +1,16 @@
+# -- THEME AUTO-WRITTEN DO NOT EDIT
+include "/home/yos/.themes/Inverted/gtk-2.0/gtkrc"
+
+style "user-font" {
+	font_name = "DejaVu Sans 10"
+}
+
+widget_class "*" style "user-font"
+
+gtk-font-name="DejaVu Sans 10"
+
+gtk-theme-name  = "Inverted"
+
+include "/home/yos/.gtkrc.mine"
+
+# -- THEME AUTO-WRITTEN DO NOT EDIT
