@@ -1,0 +1,25 @@
+[user]
+	name = klolik
+	email = klolik@ya.ru
+[core]
+  autocrlf = false
+  safecrlf = false
+  quotepath = false
+  pager = view -
+#  editor = vimpager
+#[diff]
+#    external = vimdiff
+[alias]
+  co = checkout
+  cm = commit
+  st = status
+  br = branch
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p
+[credential]
+	helper = cache --timeout=3600
+[push]
+  default = matching
+[color]
+	ui = false
