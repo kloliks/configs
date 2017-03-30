@@ -60,7 +60,7 @@ main = do
   xmonad $ ewmh $ fullscreenSupport defaultConfig
       { terminal        = myTerminal
       , layoutHook      = myLayout
-      , manageHook      = myManageHook <+> manageDocks
+      , manageHook      = myManageHook <+> namedScratchpadManageHook myScratchPads <+> manageDocks
       , workspaces      = myWorkspaces
       , keys            = myKeys
 --      , logHook         = myLogHook xmproc
@@ -147,18 +147,21 @@ myManageScratchPad = scratchpadManageHook (S.RationalRect l t w h)
 
 myScratchPads = [ NS "sublime" spawnSublime findSublime manageEditors
                 , NS "gvim"    spawnGvim    findGvim    manageEditors
+                , NS "emacs"   spawnEmacs   findEmacs   manageEditors
                 ]
   where
     spawnSublime  = "subl3"
     spawnGvim     = "gvim"
+    spawnEmacs    = "emacs"
     findSublime   = className =? "Subl3"
     findGvim      = className =? "Gvim"
+    findEmacs     = className =? "Emacs"
     manageEditors = customFloating $ S.RationalRect l t w h
       where
-        h = 0.70
-        w = 0.60
-        t = 0.90 - h
-        l = 0.97 - w
+        h = 0.60
+        w = 0.51
+        t = 0.77 - h
+        l = 0.86 - w
 
 
 winMask       = mod4Mask
@@ -179,7 +182,7 @@ myKeys conf = M.fromList $
 --    , ((winMask               , xK_h      ), windows S.focusLeft                                        )
     , ((altMask                 , xK_x      ), scratchpadSpawnActionTerminal myTerminal                   )
     , ((altMask                 , xK_s      ), namedScratchpadAction myScratchPads "sublime"              )
-    , ((altMask                 , xK_e      ), namedScratchpadAction myScratchPads "gvim"                 )
+    , ((altMask                 , xK_e      ), namedScratchpadAction myScratchPads "emacs"                )
     , ((winMask                 , xK_l      ), spawn "xscreensaver-command -lock"                         )
     , ((winMask                 , xK_v      ), spawn "VirtualBox"                                         )
     , ((winMask                 , xK_r      ), spawn "gmrun"                                              )
