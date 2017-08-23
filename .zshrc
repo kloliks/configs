@@ -42,14 +42,13 @@ alias -s {bmp,jpg}="nohup gimp"
 
 # enviropment
 export PATH="$PATH:/sbin:/usr/sbin:$HOME/bin:$GOPATH/bin"
-export AB_HOME="/home/yos/Trassir_3.2/tech1utils/ab"
 
 export EDITOR=vim
 export PAGER=vimpager
 export MANPAGER=vimmanpager
 export PERLDOC_PAGER="less -+C -M"
 
-export MAKEFLAGS=j9
+export MAKEFLAGS=j5
 
 #>>>>>       zsh configure       <<<<<
 

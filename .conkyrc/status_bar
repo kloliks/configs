@@ -67,9 +67,8 @@ conky.text = [[
 [${color5}cpu ${lua_parse colour_int ${cpu} 50 80}${color5}%${color3}] \
 [${color5}mem ${lua_parse colour_int ${memperc} 50 80}${color5}%${color3}] \
 [${color5}sda ${lua_parse colour_bytes ${diskio sda} 100 150 ${color5}}${color3}] \
-[${color5}sdb ${lua_parse colour_bytes ${diskio sdb} 100 150 ${color5}}${color3}] \
-[${color5}eno1 ${lua_parse colour_float ${downspeedf eno1} 0.3 0.7}${color5}\
-/${lua_parse colour_float ${upspeedf eno1} 0.3 0.7}${color5} KiB${color3}]
+[${color5}enp2s0 ${lua_parse colour_float ${downspeedf enp2s0} 0.3 0.7}${color5}\
+/${lua_parse colour_float ${upspeedf enp2s0} 0.3 0.7}${color5} KiB${color3}]
 ${voffset -16}${alignc}\
 ${color1}${time %A} ${color0}${time %d %b %Y} ${color1}${time %T}
 ${voffset -16}${alignr}\
