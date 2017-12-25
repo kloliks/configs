@@ -132,14 +132,18 @@ set sessionoptions=blank,buffers,curdir,folds,globals,help,localoptions,options,
 set wildmode=longest,list,full
 
 
+" <F7> - toggle relative number
+map <F7> :set invrelativenumber<CR>
+imap <F7> <ESC>:set invrelativenumber<CR>a
+
 " <F8> - toggle number
 map <F8> :set invnu<CR>
 imap <F8> <ESC>:set invnu<CR>a
 
 " <F9> - make
-map <F9> :w\|make! -j9<cr>
-vmap <F9> <ESC>:w\|make! -j9<cr>
-imap <F9> <ESC>:w\|make! -j9<cr>
+map <F9> :w<CR>
+vmap <F9> <ESC>:w<CR>
+imap <F9> <ESC>:w<CR>a
 
 " <F10> start perl "current file"
 map <F10> :!perl "%"<CR>
@@ -209,11 +213,11 @@ autocmd FileType perl imap {<CR> {<CR>}<ESC>O
 
 
 "autocmd FileType python setlocal noexpandtab
-autocmd FileType python setlocal tabstop=2
-autocmd FileType python setlocal shiftwidth=2
+autocmd FileType python setlocal tabstop=4
+autocmd FileType python setlocal shiftwidth=4
 autocmd FileType python setlocal softtabstop=0
-autocmd FileType python setlocal list
-autocmd FileType python setlocal listchars=tab:→·
+" autocmd FileType python setlocal list
+" autocmd FileType python setlocal listchars=tab:→·
 autocmd FileType python setlocal foldmethod=indent
 
 autocmd FileType xml set foldmethod=indent
@@ -246,6 +250,11 @@ autocmd FileType c,cpp ab #d #define
 autocmd FileType c,cpp ab or \|\|
 autocmd FileType c,cpp ab and &&
 autocmd FileType c,cpp ab not !
+
+autocmd FileType c,cpp map <F9> :w\|make! -j5<cr>
+autocmd FileType c,cpp vmap <F9> <ESC>:w\|make! -j5<cr>
+autocmd FileType c,cpp imap <F9> <ESC>:w\|make! -j5<cr>
+
 
 
 " Go

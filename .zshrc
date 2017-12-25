@@ -1,7 +1,13 @@
 # locale
-#export LANG=ru_RU.UTF-8
-#export LC_COLLATE=C
-#export LC_NUMERIC=C
+if [[ $TMUX != '' ]]; then
+  export LANG=ru_RU.UTF-8
+  export LC_COLLATE=C
+  export LC_NUMERIC=C
+fi
+
+# Clang C compiler
+export CC=/usr/bin/clang
+export CXX=/usr/bin/clang++
 
 #export LANG=ru_RU.cp1251
 #export LC_COLLATE=C
@@ -38,10 +44,12 @@ alias -s {avi,mp4,mkv}="mplayer -fs"
 
 alias racket="racket -il readline"
 
+alias tmux="tmux attach -d || tmux"
+
 alias -s {bmp,jpg}="nohup gimp"
 
 # enviropment
-export PATH="$PATH:/sbin:/usr/sbin:$HOME/bin:$GOPATH/bin"
+export PATH="$PATH:/sbin:/usr/sbin:$HOME/bin:$GOPATH/bin:$HOME/.local/bin"
 
 export EDITOR=vim
 export PAGER=vimpager
@@ -97,6 +105,10 @@ PS_LOCALE="%{$fg[cyan]%}`echo $LANG | sed 's/.*\.\(.*\)/\1/'`"
 PS_CURDIR="%{$fg[yellow]%}%~"
 PS_VIMODE="[%{$fg[green]%}ins%{$reset_color%}]"
 PS_HOSTNAME="%{$fg[green]%}%n%{$fg[blue]%}%B@%M%b"
+PS_TMUX=""
+if [[ $TMUX != '' ]]; then
+  PS_TMUX="%{$fg[cyan]%}tmux%{$reset_color%} "
+fi
 
 PSO="%{$fg[cyan]%}["
 PSC="%{$fg[cyan]%}]"
@@ -108,7 +120,7 @@ zle-keymap-select () {
         PS1="$PS_VIMODE%{$fg[yellow]%}%% %{$reset_color%}"
 
         if [[ $TMUX != '' ]]; then
-            printf '\033Ptmux;\033\033]12;brred\007\033\\'
+            printf '\033Ptmux;\033\033]12;#cb4b16\007\033\\'
         elif [ $TERM = "screen" ]; then
             echo -ne '\033P\033]12;#cb4b16\007\033\\'
         elif [ $TERM != "linux" ]; then
@@ -119,7 +131,7 @@ zle-keymap-select () {
         PS1="$PS_VIMODE%{$fg[yellow]%}%% %{$reset_color%}"
 
         if [[ $TMUX != '' ]]; then
-            printf '\033Ptmux;\033\033]12;brgreen\007\033\\'
+            printf '\033Ptmux;\033\033]12;#586e75\007\033\\'
         elif [ $TERM = "screen" ]; then
             echo -ne '\033P\033]12;#586e75\007\033\\'
         elif [ $TERM != "linux" ]; then
@@ -130,7 +142,7 @@ zle-keymap-select () {
     zle reset-prompt
 };
 
-precmd() { print -rP "$PS_LOCALE $PS_HOSTNAME $PS_CURDIR $(git_prompt)" }
+precmd() { print -rP "$PS_LOCALE $PS_HOSTNAME ${PS_TMUX}$PS_CURDIR $(git_prompt)" }
 PS1="$PS_VIMODE%{$fg[yellow]%}%% %{$reset_color%}"
 
 zle-line-init () {

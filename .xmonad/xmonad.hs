@@ -122,17 +122,10 @@ myManageHook = composeAll
     , className =? "Pidgin"           --> doShift "IM"
     , className =? "Gimp"             --> doShift "Gimp"
     , className =? "Skype-bin"        --> doShift "Skype"
+    , className =? "TelegramDesktop"  --> doShift "Skype"
     , className =? "Subl3"            --> doFloat
     , className =? "Gvim"             --> doFloat
     , className =? "feh"              --> doFloat
-    , className =? "t1server-core2"   --> doFloat
-    , className =? "t1server-core2d"  --> doFloat
-    , className =? "T1server-core2"   --> doFloat
-    , className =? "T1server-core2d"  --> doFloat
-    , className =? "t1client-core2"   --> doFloat
-    , className =? "t1client-core2d"  --> doFloat
-    , className =? "T1client-core2"   --> doFloat
-    , className =? "T1client-core2d"  --> doFloat
     , isDialog                        --> doCenterFloat
     ] <+> myManageScratchPad
 
