@@ -97,10 +97,6 @@ git_prompt() {
 # set indicator vi-mode
 
 # change cursor color to reflect vicmd mode
-#PS_LOCALE="%{$fg_bold[cyan]%}`echo $LANG | sed 's/.*\.\(.*\)/\1/'`%{$reset_color%}"
-#PS_CURDIR="%{$fg[yellow]%}%~%{$reset_color%}"
-#PS_VIMODE="[%{$fg[green]%}ins%{$reset_color%}]"
-#PS_HOSTNAME="%{$fg[green]%}%n%{$fg_bold[blue]%}@%M%{$reset_color%}"
 PS_LOCALE="%{$fg[cyan]%}`echo $LANG | sed 's/.*\.\(.*\)/\1/'`"
 PS_CURDIR="%{$fg[yellow]%}%~"
 PS_VIMODE="[%{$fg[green]%}ins%{$reset_color%}]"
@@ -112,11 +108,10 @@ fi
 
 PSO="%{$fg[cyan]%}["
 PSC="%{$fg[cyan]%}]"
-#PSC="%{$fg[green]%}]%{$reset_color%}"
 
 zle-keymap-select () {
     if [ $KEYMAP = vicmd ]; then
-        PS_VIMODE="[%{$fg[red]%}cmd%{$reset_color%}]"
+        PS_VIMODE="[%{$fg[red]%}cmd%]"
         PS1="$PS_VIMODE%{$fg[yellow]%}%% %{$reset_color%}"
 
         if [[ $TMUX != '' ]]; then
@@ -127,7 +122,7 @@ zle-keymap-select () {
             echo -ne "\033]12;#cb4b16\007"
         fi
     else
-        PS_VIMODE="[%{$fg[green]%}ins%{$reset_color%}]"
+        PS_VIMODE="[%{$fg[green]%}ins%]"
         PS1="$PS_VIMODE%{$fg[yellow]%}%% %{$reset_color%}"
 
         if [[ $TMUX != '' ]]; then
