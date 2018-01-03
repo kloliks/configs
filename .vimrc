@@ -197,11 +197,11 @@ nmap k <C-W><C-k>
 nmap l <C-W><C-l>
 
 
-nmap c :.s/^/#/g<CR>:noh<CR>
-nmap v :.s/^#//g<CR>:noh<CR>
+nmap c :.s/^/# /g<CR>:noh<CR>
+nmap v :.s/^# //g<CR>:noh<CR>
 
-vmap c :s/^/#/g<CR>:noh<CR>
-vmap v :s/^#//g<CR>:noh<CR>
+vmap c :s/^/# /g<CR>:noh<CR>
+vmap v :s/^# //g<CR>:noh<CR>
 
 
 "remove spaces on open
@@ -254,7 +254,6 @@ autocmd FileType c,cpp ab not !
 autocmd FileType c,cpp map <F9> :w\|make! -j5<cr>
 autocmd FileType c,cpp vmap <F9> <ESC>:w\|make! -j5<cr>
 autocmd FileType c,cpp imap <F9> <ESC>:w\|make! -j5<cr>
-
 
 
 " Go
