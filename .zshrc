@@ -99,39 +99,37 @@ git_prompt() {
 # change cursor color to reflect vicmd mode
 PS_LOCALE="%{$fg[cyan]%}`echo $LANG | sed 's/.*\.\(.*\)/\1/'`"
 PS_CURDIR="%{$fg[yellow]%}%~"
-PS_VIMODE="[%{$fg[green]%}ins%{$reset_color%}]"
+PS_VIMODE="[%{$fg[green]%}ins]"
 PS_HOSTNAME="%{$fg[green]%}%n%{$fg[blue]%}%B@%M%b"
 PS_TMUX=""
 if [[ $TMUX != '' ]]; then
-  PS_TMUX="%{$fg[cyan]%}tmux%{$reset_color%} "
+  PS_TMUX="%{$fg[cyan]%}tmux "
 fi
 
-PSO="%{$fg[cyan]%}["
-PSC="%{$fg[cyan]%}]"
 
 zle-keymap-select () {
     if [ $KEYMAP = vicmd ]; then
-        PS_VIMODE="[%{$fg[red]%}cmd%]"
-        PS1="$PS_VIMODE%{$fg[yellow]%}%% %{$reset_color%}"
+        PS_VIMODE="[%{$fg[red]%}cmd]"
+#        PS1="$PS_VIMODE%{$fg[yellow]%}%% %{$reset_color%}"
 
-        if [[ $TMUX != '' ]]; then
-            printf '\033Ptmux;\033\033]12;#cb4b16\007\033\\'
-        elif [ $TERM = "screen" ]; then
-            echo -ne '\033P\033]12;#cb4b16\007\033\\'
-        elif [ $TERM != "linux" ]; then
-            echo -ne "\033]12;#cb4b16\007"
-        fi
+#        if [[ $TMUX != '' ]]; then
+#            printf '\033Ptmux;\033\033]12;#cb4b16\007\033\\'
+#        elif [ $TERM = "screen" ]; then
+#            echo -ne '\033P\033]12;#cb4b16\007\033\\'
+#        elif [ $TERM != "linux" ]; then
+#            echo -ne "\033]12;#cb4b16\007"
+#        fi
     else
-        PS_VIMODE="[%{$fg[green]%}ins%]"
-        PS1="$PS_VIMODE%{$fg[yellow]%}%% %{$reset_color%}"
+        PS_VIMODE="[%{$fg[green]%}ins]"
+#        PS1="$PS_VIMODE%{$fg[yellow]%}%% %{$reset_color%}"
 
-        if [[ $TMUX != '' ]]; then
-            printf '\033Ptmux;\033\033]12;#586e75\007\033\\'
-        elif [ $TERM = "screen" ]; then
-            echo -ne '\033P\033]12;#586e75\007\033\\'
-        elif [ $TERM != "linux" ]; then
-            echo -ne "\033]12;#586e75\007"
-        fi
+#        if [[ $TMUX != '' ]]; then
+#            printf '\033Ptmux;\033\033]12;#586e75\007\033\\'
+#        elif [ $TERM = "screen" ]; then
+#            echo -ne '\033P\033]12;#586e75\007\033\\'
+#        elif [ $TERM != "linux" ]; then
+#            echo -ne "\033]12;#586e75\007"
+#        fi
     fi
 
     zle reset-prompt
@@ -143,11 +141,11 @@ PS1="$PS_VIMODE%{$fg[yellow]%}%% %{$reset_color%}"
 zle-line-init () {
     zle -K viins
 
-    if [ $TERM = "screen" ]; then
-        echo -ne '\033P\033]12;#586e75\007\033\\'
-    elif [ $TERM != "linux" ]; then
-        echo -ne "\033]12;#586e75\007"
-    fi
+#    if [ $TERM = "screen" ]; then
+#        echo -ne '\033P\033]12;#586e75\007\033\\'
+#    elif [ $TERM != "linux" ]; then
+#        echo -ne "\033]12;#586e75\007"
+#    fi
 
     zle reset-prompt
 };
