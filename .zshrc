@@ -64,8 +64,8 @@ export MAKEFLAGS=j5
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=1000
+SAVEHIST=1000
 
 setopt hist_ignore_space
 setopt hist_ignore_all_dups
