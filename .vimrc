@@ -197,11 +197,11 @@ nmap k <C-W><C-k>
 nmap l <C-W><C-l>
 
 
-nmap c :.s/^/#/g<CR>:noh<CR>
-nmap v :.s/^#//g<CR>:noh<CR>
+nmap c :.s/^/# /g<CR>:noh<CR>
+nmap v :.s/^# //g<CR>:noh<CR>
 
-vmap c :s/^/#/g<CR>:noh<CR>
-vmap v :s/^#//g<CR>:noh<CR>
+vmap c :s/^/# /g<CR>:noh<CR>
+vmap v :s/^# //g<CR>:noh<CR>
 
 
 "remove spaces on open

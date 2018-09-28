@@ -6,8 +6,8 @@ if [[ $TMUX != '' ]]; then
 fi
 
 # Clang C compiler
-export CC=/usr/bin/clang
-export CXX=/usr/bin/clang++
+export CC=clang
+export CXX=clang++
 
 #export LANG=ru_RU.cp1251
 #export LC_COLLATE=C
