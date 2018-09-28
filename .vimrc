@@ -256,7 +256,6 @@ autocmd FileType c,cpp vmap <F9> <ESC>:w\|make! -j5<cr>
 autocmd FileType c,cpp imap <F9> <ESC>:w\|make! -j5<cr>
 
 
-
 " Go
 autocmd FileType go nmap c :s;^;//;g<CR>:noh<CR>
 autocmd FileType go nmap v :s;^\s*//;;g<CR>:noh<CR>
