@@ -1,7 +1,3 @@
-#!/bin/sh
-
-# xhost +localhost
-
 export LANG="ru_RU.UTF-8"
 export LC_NUMERIC=C
 export LC_COLLATE=C
@@ -15,34 +11,44 @@ export XCURSOR_THEME="Oxygen_Black"
 
 #export __GL_YIELD="USLEEP"
 
-export JAVA_HOME="/opt/oracle-jdk-bin-1.8.0.112"
+#export JAVA_HOME="/opt/oracle-jdk-bin-1.8.0.112"
+#export ANDROID_SWT="/usr/share/swt-3.7/lib/"
 
-#export __GL_THREADED_OPTIMIZATIONS=1
-# export XDG_MENU_PREFIX="gnome-"
-
-# export ANDROID_SWT="/usr/share/swt-3.7/lib/"
-
+#xset m 1/8 0
+#xset -dpms
 xsetroot -cursor_name left_ptr
-#xset m 2 100
 xinput --set-prop "Logitech USB-PS/2 Optical Mouse" 'Device Accel Constant Deceleration' 2
-
-/usr/bin/xscreensaver -nosplash&
-
-#/usr/bin/xcompmgr -F&
-compton -b --backend=glx
-
-feh --no-fehbg --bg-max --randomize /home/data/wallpapers/*
-#feh -g "x1016++63" --no-fehbg --bg-center-max --randomize /home/data/wallpapers/konochan
-#feh -g "1024x768" --no-fehbg --bg-center-max --randomize /home/data/wallpapers/konochan
-
-
-${HOME}/tmp/LoLoSwitcher/build/loloswitcher&
 
 setxkbmap -option ctrl:swapcaps
 
-(sleep 2; conky -c ~/.conkyrc/status_bar)&
-/usr/bin/xmonad
+${HOME}/tmp/loloswitcher_0_27/loloswitcher&
 
-#(cd $HOME/src/tech1; ./t1server-core2d --nvr)
+
+# feh -g "x963++61" --randomize --bg-center-max --no-fehbg ~/wallpapers/konochan
+#feh -g "x1019++61" --randomize --bg-center-max --no-fehbg ~/wallpapers/konochan ~/wallpapers/deponia/
+feh --randomize --bg-max --no-fehbg ~/wallpapers/*
+#feh --randomize --bg-center-max --no-fehbg ~/wallpapers/konochan
+
+
+#xcompmgr -F&
+compton -b
+
+# for intel cards
+# compton -b --backend=glx
+
+#/usr/bin/vmware-user
+
+# deluge  &
+# firefox &
+# skype   &
+# smplayer&
+
+
+# (sleep 4; ~/.conkyrc/start.pl -r)&
+#conky -c ~/.conkyrc/status_bar
+(sleep 4; conky -d)&
+
+#/usr/bin/openbox-session
+/usr/bin/xmonad
 
 # vim:ft=sh

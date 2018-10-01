@@ -38,6 +38,7 @@ inoremap <C-U> <C-G>u<C-U>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
+  set ttymouse=xterm2 " fix select text in tmux
   set mouse=a
 endif
 
@@ -91,9 +92,6 @@ if !exists(":DiffOrig")
 endif
 
 "
-
-set exrc
-
 let $PAGER=''
 
 "set smarttab
@@ -105,9 +103,6 @@ set expandtab
 set shiftwidth=2
 set tabstop=2
 
-set foldmethod=syntax
-"set foldmethod=indent
-
 set incsearch
 set nowrapscan
 
@@ -116,8 +111,6 @@ set novisualbell
 set t_vb=
 
 set hidden
-
-"set smartindent
 
 set fo+=cr
 
@@ -153,6 +146,33 @@ imap <F10> <ESC>:!perl "%"<CR>
 map <F11> :make! start<CR>
 map <F12> :!./test.a<CR>
 
+set keymap=russian-jcukenwin
+set iminsert=0
+set imsearch=0
+
+set fileencodings=utf-8,cp1251,koi8-r,cp866
+
+nmap h <C-W><C-h>
+nmap j <C-W><C-j>
+nmap k <C-W><C-k>
+nmap l <C-W><C-l>
+
+
+nmap c :.s/^/# /g<CR>:noh<CR>
+nmap v :.s/^# //g<CR>:noh<CR>
+
+vmap c :s/^/# /g<CR>:noh<CR>
+vmap v :s/^# //g<CR>:noh<CR>
+
+
+
+set exrc
+
+set foldmethod=syntax
+"set foldmethod=indent
+
+"set smartindent
+
 "imap [ []
 "imap {<CR> {<CR>};<ESC>O
 
@@ -175,10 +195,6 @@ set complete+=k
 set complete+=b
 set complete+=t
 
-set keymap=russian-jcukenwin
-set iminsert=0
-set imsearch=0
-
 inoremap <C-B> <C-X><C-O>
 " set completeopt-=menu
 " set completeopt-=menuone
@@ -186,22 +202,7 @@ set completeopt-=preview
 set completeopt+=longest
 set mps-=[:]
 
-set fileencodings=utf-8,cp1251,koi8-r,cp866
-
 "set list # view all symbols as 'tab'
-
-
-nmap h <C-W><C-h>
-nmap j <C-W><C-j>
-nmap k <C-W><C-k>
-nmap l <C-W><C-l>
-
-
-nmap c :.s/^/# /g<CR>:noh<CR>
-nmap v :.s/^# //g<CR>:noh<CR>
-
-vmap c :s/^/# /g<CR>:noh<CR>
-vmap v :s/^# //g<CR>:noh<CR>
 
 
 "remove spaces on open
@@ -257,15 +258,6 @@ autocmd FileType c,cpp imap <F9> <ESC>:w\|make! -j5<cr>
 
 
 " Go
-autocmd FileType go nmap c :s;^;//;g<CR>:noh<CR>
-autocmd FileType go nmap v :s;^\s*//;;g<CR>:noh<CR>
-autocmd FileType go vmap c :s;^;//;g<CR>:noh<CR>
-autocmd FileType go vmap v :s;^\s*//;;g<CR>:noh<CR>
-
-autocmd FileType go map <F9> :w\|GoRun "%"<CR>
-autocmd FileType go vmap <F9> <ESC>:w\|GoRun "%"<CR>
-autocmd FileType go imap <F9> <ESC>:w\|GoRun "%"<CR>
-
 autocmd FileType go map  <F10> :w\|GoBuild "%"<CR>
 autocmd FileType go vmap <F10> <ESC>:w\|GoBuild "%"<CR>
 autocmd FileType go imap <F10> <ESC>:w\|GoBuild "%"<CR>
@@ -274,6 +266,15 @@ autocmd FileType go imap <C-@> <C-x><C-o>
 autocmd FileType go nmap <Leader>i <Plug>(go-info)
 autocmd FileType go nmap <Leader>dt <Plug>(go-def-tab)
 autocmd FileType go nmap <Leader>s <Plug>(go-implements)
+
+autocmd FileType go map <F9> :w\|GoRun "%"<CR>
+autocmd FileType go vmap <F9> <ESC>:w\|GoRun "%"<CR>
+autocmd FileType go imap <F9> <ESC>:w\|GoRun "%"<CR>
+
+autocmd FileType go nmap c :s;^;//;g<CR>:noh<CR>
+autocmd FileType go nmap v :s;^\s*//;;g<CR>:noh<CR>
+autocmd FileType go vmap c :s;^;//;g<CR>:noh<CR>
+autocmd FileType go vmap v :s;^\s*//;;g<CR>:noh<CR>
 
 " Java
 autocmd FileType java map <F12> :make! start<CR>
@@ -341,6 +342,7 @@ autocmd FileType java map <F12> :make! start<CR>
 
 " execute pathogen#infect()
 
+" Vundle enable
 " command PluginUpdate
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim

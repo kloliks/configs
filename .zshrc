@@ -49,7 +49,8 @@ alias tmux="tmux attach -d || tmux"
 alias -s {bmp,jpg}="nohup gimp"
 
 # enviropment
-export PATH="$PATH:/sbin:/usr/sbin:$HOME/bin:$GOPATH/bin:$HOME/.local/bin"
+export PATH="/bin:/usr/bin:/sbin:/usr/sbin:$PATH:$HOME/.local/bin:$HOME/bin:$HOME/gocode/bin"
+export GOPATH="$HOME/gocode"
 
 export EDITOR=vim
 export PAGER=vimpager
@@ -99,7 +100,7 @@ git_prompt() {
 # change cursor color to reflect vicmd mode
 PS_LOCALE="%{$fg[cyan]%}`echo $LANG | sed 's/.*\.\(.*\)/\1/'`"
 PS_CURDIR="%{$fg[yellow]%}%~"
-PS_VIMODE="[%{$fg[green]%}ins]"
+PS_VIMODE="[%{$fg[green]%}ins%{$reset_color%}]"
 PS_HOSTNAME="%{$fg[green]%}%n%{$fg[blue]%}%B@%M%b"
 PS_TMUX=""
 if [[ $TMUX != '' ]]; then
@@ -109,7 +110,7 @@ fi
 
 zle-keymap-select () {
     if [ $KEYMAP = vicmd ]; then
-        PS_VIMODE="[%{$fg[red]%}cmd]"
+        PS_VIMODE="[%{$fg[red]%}cmd%{$reset_color%}]"
 #        PS1="$PS_VIMODE%{$fg[yellow]%}%% %{$reset_color%}"
 
 #        if [[ $TMUX != '' ]]; then
@@ -120,7 +121,7 @@ zle-keymap-select () {
 #            echo -ne "\033]12;#cb4b16\007"
 #        fi
     else
-        PS_VIMODE="[%{$fg[green]%}ins]"
+        PS_VIMODE="[%{$fg[green]%}ins%{$reset_color%}]"
 #        PS1="$PS_VIMODE%{$fg[yellow]%}%% %{$reset_color%}"
 
 #        if [[ $TMUX != '' ]]; then

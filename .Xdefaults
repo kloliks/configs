@@ -28,30 +28,39 @@ Xcursor.theme: Oxygen_Black
 !-------------------------------------------------
 
 
+#URxvt*background: #262626
+URxvt*background: #262626
+URxvt*foreground: #FFF8DC
+#URxvt*background: #fdf6e3
+#URxvt*foreground: #657b83
+!URxvt.cursorColor: #af8700
+URxvt.cursorColor: #586e75
+URxvt.pointerColorBackground: #93a1a1
+URxvt.pointerColorForeground: #af8700
 URxvt.intensityStyles: false
 
 !URxvt*transparent: true
 !URxvt*shading: 30
- 
-URxvt.font:     xft:Ubuntu Mono:size=14
-URxvt.boldFont: xft:Ubuntu Mono:size=14:style=Bold
-!URxvt*font:     xft:monofur:size=15
-!URxvt*boldFont: xft:monofur:size=15:bold
+
+URxvt*font:     xft:Ubuntu Mono:size=14
+URxvt*boldfont: xft:Ubuntu Mono:size=14:bold
+#URxvt*font:     xft:monofur:size=15
+#URxvt*boldFont: xft:monofur:size=15:bold
 
 !Rxvt*borderLess:true
 !Rxvt*scrollBar_right:true
 URxvt*scrollBar:false
 
 !URxvt*geometry: 130x35
-URxvt*saveLines: 10000
+URxvt*saveLines: 3200
 URxvt*scrollTtyOutput:      false
 URxvt*scrollWithBuffer:     true
 URxvt*scrollTtyKeypress:    true
 
 !Rxvt*font:-*-fixed-medium-*-*-*-12-*-*-*-*-*-*-*
 !Rxvt*boldFont:-*-fixed-bold-*-*-*-12-*-*-*-*-*-*-*
-!URxvt*font:-*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*
-!URxvt*boldFont:-*-terminus-bold-r-*-*-12-*-*-*-*-*-*-*
+!Rxvt*font:-*-terminus-medium-r-*-*-12-*-*-*-*-*-*-*
+!Rxvt*boldFont:-*-terminus-bold-r-*-*-12-*-*-*-*-*-*-*
 !URxvt*font:     xft:Monaco:size=15
 !URxvt*boldFont: xft:Monaco:size=15:bold
 !URxvt*font:     xft:Terminus:size=11
@@ -76,6 +85,12 @@ URxvt*skipScroll: true
 !URxvt*cursorBlink: true
 !URxvt*scrollTtyOutput: true
 
+!URxvt*depth: 32
+!URxvt*fading: 20
+!URxvt*background: [80]black
+!URxvt*background: [100]black
+!URxvt*foreground: #D0D0D0
+
 !URxvt*urlLauncher: /usr/bin/luakit
 !URxvt.url-launcher: /usr/bin/luakit
 !URxvt*underlineURLs: true
@@ -89,95 +104,95 @@ URxvt*skipScroll: true
 
 !URxvt.urgentOnBell: True
 
-! color0  (black)          = Black
-! color1  (red)            = Red3
-! color2  (green)          = Green3
-! color3  (yellow)         = Yellow3
-! color4  (blue)           = Blue3
-! color5  (magenta)        = Magenta3
-! color6  (cyan)           = Cyan3
-! color7  (white)          = AntiqueWhite
-! color8  (bright black)   = Grey25
-! color9  (bright red)     = Red
-! color10 (bright green)   = Green
-! color11 (bright yellow)  = Yellow
-! color12 (bright blue)    = Blue
-! color13 (bright magenta) = Magenta
-! color14 (bright cyan)    = Cyan
-! color15 (bright white)   = White
+# color0  (black)          = Black
+# color1  (red)            = Red3
+# color2  (green)          = Green3
+# color3  (yellow)         = Yellow3
+# color4  (blue)           = Blue3
+# color5  (magenta)        = Magenta3
+# color6  (cyan)           = Cyan3
+# color7  (white)          = AntiqueWhite
+# color8  (bright black)   = Grey25
+# color9  (bright red)     = Red
+# color10 (bright green)   = Green
+# color11 (bright yellow)  = Yellow
+# color12 (bright blue)    = Blue
+# color13 (bright magenta) = Magenta
+# color14 (bright cyan)    = Cyan
+# color15 (bright white)   = White
 
-! Rxvt*color0: #000000
-! Rxvt*color1: #aa0000
-! Rxvt*color2: #00aa00
-! Rxvt*color3: #aa5500
-! Rxvt*color4: #3333ff
-! Rxvt*color5: #aa00aa
-! Rxvt*color6: #00aaaa
-! Rxvt*color7: #aaaaaa
-! Rxvt*color8: #555555
-! Rxvt*color9: #ff5555
-! Rxvt*color10: #55ff55
-! Rxvt*color11: #ffff55
-! Rxvt*color12: #5555ff
-! Rxvt*color13: #ff55ff
-! Rxvt*color14: #55ffff
-! Rxvt*color15: #ffffff
+# Rxvt*color0: #000000
+# Rxvt*color1: #aa0000
+# Rxvt*color2: #00aa00
+# Rxvt*color3: #aa5500
+# Rxvt*color4: #3333ff
+# Rxvt*color5: #aa00aa
+# Rxvt*color6: #00aaaa
+# Rxvt*color7: #aaaaaa
+# Rxvt*color8: #555555
+# Rxvt*color9: #ff5555
+# Rxvt*color10: #55ff55
+# Rxvt*color11: #ffff55
+# Rxvt*color12: #5555ff
+# Rxvt*color13: #ff55ff
+# Rxvt*color14: #55ffff
+# Rxvt*color15: #ffffff
 
-!Rxvt.color0: #2E3436
-!! Rxvt.color1: #CC0000
-!Rxvt.color1: #AA0000
-!Rxvt.color2: #4E9A06
-!! Rxvt.color3: #C4A000
-!Rxvt.color3: #AA5500
-!Rxvt.color4: #3465A4
-!Rxvt.color5: #75507B
-!Rxvt.color6: #06989A
-!Rxvt.color7: #D3D7CF
-!Rxvt.color8: #555753
-!! Rxvt.color9: #EF2929
-!Rxvt.color9: #FF5555
-!Rxvt.color10: #8AE234
-!! Rxvt.color11: #FCE94F
-!Rxvt.color11: #FFFF55
-!Rxvt.color12: #729FCF
-!Rxvt.color13: #AD7FA8
-!Rxvt.color14: #34E2E2
-!Rxvt.color15: #EEEEEC
+#Rxvt.color0: #2E3436
+## Rxvt.color1: #CC0000
+#Rxvt.color1: #AA0000
+#Rxvt.color2: #4E9A06
+## Rxvt.color3: #C4A000
+#Rxvt.color3: #AA5500
+#Rxvt.color4: #3465A4
+#Rxvt.color5: #75507B
+#Rxvt.color6: #06989A
+#Rxvt.color7: #D3D7CF
+#Rxvt.color8: #555753
+## Rxvt.color9: #EF2929
+#Rxvt.color9: #FF5555
+#Rxvt.color10: #8AE234
+## Rxvt.color11: #FCE94F
+#Rxvt.color11: #FFFF55
+#Rxvt.color12: #729FCF
+#Rxvt.color13: #AD7FA8
+#Rxvt.color14: #34E2E2
+#Rxvt.color15: #EEEEEC
 
-! Konsole dark pastel
-!Rxvt.color0: #3F3F3F
-!Rxvt.color1: #705050
-!Rxvt.color2: #60B48A
-!Rxvt.color3: #DFAF8F
-!Rxvt.color4: #9AB9D7
-!Rxvt.color5: #DC8CC4
-!Rxvt.color6: #8CD1D3
-!Rxvt.color7: #DCDCCD
-!Rxvt.color8: #709080
-!Rxvt.color9: #DCA3A3
-!Rxvt.color10: #72D5A2
-!Rxvt.color11: #F0DFAF
-!Rxvt.color12: #94C0F3
-!Rxvt.color13: #EC93D5
-!Rxvt.color14: #93E1E3
-!Rxvt.color15: #FFFFFF
+# Konsole dark pastel
+#Rxvt.color0: #3F3F3F
+#Rxvt.color1: #705050
+#Rxvt.color2: #60B48A
+#Rxvt.color3: #DFAF8F
+#Rxvt.color4: #9AB9D7
+#Rxvt.color5: #DC8CC4
+#Rxvt.color6: #8CD1D3
+#Rxvt.color7: #DCDCCD
+#Rxvt.color8: #709080
+#Rxvt.color9: #DCA3A3
+#Rxvt.color10: #72D5A2
+#Rxvt.color11: #F0DFAF
+#Rxvt.color12: #94C0F3
+#Rxvt.color13: #EC93D5
+#Rxvt.color14: #93E1E3
+#Rxvt.color15: #FFFFFF
 
-!base03    #002b36  8/4 brblack  234 #1c1c1c 15 -12 -12   0  43  54 193 100  21
-!base02    #073642  0/4 black    235 #262626 20 -12 -12   7  54  66 192  90  26
-!base01    #586e75 10/7 brgreen  240 #4e4e4e 45 -07 -07  88 110 117 194  25  46
-!base00    #657b83 11/7 bryellow 241 #585858 50 -07 -07 101 123 131 195  23  51
-!base0     #839496 12/6 brblue   244 #808080 60 -06 -03 131 148 150 186  13  59
-!base1     #93a1a1 14/4 brcyan   245 #8a8a8a 65 -05 -02 147 161 161 180   9  63
-!base2     #eee8d5  7/7 white    254 #d7d7af 92 -00  10 238 232 213  44  11  93
-!base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 246 227  44  10  99
-!yellow    #b58900  3/3 yellow   136 #af8700 60  10  65 181 137   0  45 100  71
-!orange    #cb4b16  9/3 brred    166 #d75f00 50  50  55 203  75  22  18  89  80
-!red       #dc322f  1/1 red      160 #d70000 50  65  45 220  50  47   1  79  86
-!magenta   #d33682  5/5 magenta  125 #af005f 50  65 -05 211  54 130 331  74  83
-!violet    #6c71c4 13/5 brmagenta 61 #5f5faf 50  15 -45 108 113 196 237  45  77
-!blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 139 210 205  82  82
-!cyan      #2aa198  6/6 cyan      37 #00afaf 60 -35 -05  42 161 152 175  74  63
-!green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
+#base03    #002b36  8/4 brblack  234 #1c1c1c 15 -12 -12   0  43  54 193 100  21
+#base02    #073642  0/4 black    235 #262626 20 -12 -12   7  54  66 192  90  26
+#base01    #586e75 10/7 brgreen  240 #4e4e4e 45 -07 -07  88 110 117 194  25  46
+#base00    #657b83 11/7 bryellow 241 #585858 50 -07 -07 101 123 131 195  23  51
+#base0     #839496 12/6 brblue   244 #808080 60 -06 -03 131 148 150 186  13  59
+#base1     #93a1a1 14/4 brcyan   245 #8a8a8a 65 -05 -02 147 161 161 180   9  63
+#base2     #eee8d5  7/7 white    254 #d7d7af 92 -00  10 238 232 213  44  11  93
+#base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 246 227  44  10  99
+#yellow    #b58900  3/3 yellow   136 #af8700 60  10  65 181 137   0  45 100  71
+#orange    #cb4b16  9/3 brred    166 #d75f00 50  50  55 203  75  22  18  89  80
+#red       #dc322f  1/1 red      160 #d70000 50  65  45 220  50  47   1  79  86
+#magenta   #d33682  5/5 magenta  125 #af005f 50  65 -05 211  54 130 331  74  83
+#violet    #6c71c4 13/5 brmagenta 61 #5f5faf 50  15 -45 108 113 196 237  45  77
+#blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 139 210 205  82  82
+#cyan      #2aa198  6/6 cyan      37 #00afaf 60 -35 -05  42 161 152 175  74  63
+#green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
 Rxvt.color0:  #073642
 Rxvt.color1:  #dc322f
 Rxvt.color2:  #859900
@@ -194,61 +209,6 @@ Rxvt.color12: #839496
 Rxvt.color13: #6c71c4
 Rxvt.color14: #93a1a1
 Rxvt.color15: #fdf6e3
-
-
-!URxvt*depth: 32
-!URxvt.shading: 80
-!URxvt.dynamicColors: on
-!URxvt.tintColor: #1a1a1a
-!URxvt*fading: 70
-!URxvt*fadeColor: [0]black
-
-URxvt*background: #262626
-!URxvt*background: #073642
-!URxvt*background: #002B36
-!URxvt*background: [90]#262626
-URxvt*foreground: #FFF8DC
-!URxvt*background: #fdf6e3
-!URxvt*foreground: #657b83
-!URxvt*background: [80]black
-!URxvt*background: [100]black
-!URxvt*foreground: #D0D0D0
-
-URxvt.cursorColor: #586e75
-!URxvt.pointerColorBackground: #93a1a1
-!URxvt.pointerColorForeground: #586e75
-
-!*.foreground:   #c5c8c6
-!*.background:   #1d1f21
-!*.cursorColor:  #c5c8c6
-
-!*.color0:       #1d1f21
-!*.color1:       #cc6666
-!*.color2:       #b5bd68
-!*.color3:       #f0c674
-!*.color4:       #81a2be
-!*.color5:       #b294bb
-!*.color6:       #8abeb7
-!*.color7:       #c5c8c6
-
-!*.color8:       #969896
-!*.color9:       #cc6666
-!*.color10:      #b5bd68
-!*.color11:      #f0c674
-!*.color12:      #81a2be
-!*.color13:      #b294bb
-!*.color14:      #8abeb7
-!*.color15:      #ffffff
-
-! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
-! use 'shell' template to set these if necessary
-!*.color16:      #de957f
-!*.color17:      #a3685a
-!*.color18:      #282a2e
-!*.color19:      #373b41
-!*.color20:      #b4b7b4
-!*.color21:      #e0e0e0
-
 
 !Rxvt*meta8: true
 
