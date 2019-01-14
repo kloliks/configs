@@ -37,8 +37,6 @@ alias less='less -M'
 alias df='df -h'
 alias du='du -h'
 
-alias mount="mount | column -t"
-
 alias -s {html,htm,xhtml}=firefox
 alias -s {avi,mp4,mkv}="mplayer -fs"
 
@@ -50,11 +48,11 @@ alias -s {bmp,jpg}="nohup gimp"
 
 # enviropment
 export PATH="/bin:/usr/bin:/sbin:/usr/sbin:$PATH:$HOME/.local/bin:$HOME/bin:$HOME/gocode/bin"
-export GOPATH="$HOME/gocode"
+#export GOPATH="$HOME/gocode"
 
 export EDITOR=vim
-export PAGER=vimpager
-export MANPAGER=vimmanpager
+#export PAGER=vimpager
+#export MANPAGER=vimmanpager
 export PERLDOC_PAGER="less -+C -M"
 
 export MAKEFLAGS=j5

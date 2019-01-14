@@ -117,6 +117,9 @@ set fo+=cr
 set nobackup
 set noswapfile
 
+" disable resize on open/close split window
+set noea
+
 set laststatus=2
 "set rulerformat=%40(%f\ %m\ %r%)%=%l,%c\ %P
 
@@ -276,6 +279,14 @@ autocmd FileType go nmap v :s;^\s*//;;g<CR>:noh<CR>
 autocmd FileType go vmap c :s;^;//;g<CR>:noh<CR>
 autocmd FileType go vmap v :s;^\s*//;;g<CR>:noh<CR>
 
+
+autocmd FileType erlang nmap c :s/^/% /g<CR>:noh<CR>
+autocmd FileType erlang nmap v :s/^% //g<CR>:noh<CR>
+
+autocmd FileType erlang vmap c :s/^/% /g<CR>:noh<CR>
+autocmd FileType erlang vmap v :s/^% //g<CR>:noh<CR>
+
+
 " Java
 autocmd FileType java map <F12> :make! start<CR>
 
@@ -356,6 +367,12 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'dpc/vim-smarttabs'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'jimenezrick/vimerl'
+Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'solarnz/thrift.vim'
+Plugin 'vim-erlang/vim-erlang-tags'
 " Plugin 'vim-scripts/L9'
 " Plugin 'vim-scripts/FuzzyFinder'
 " Plugin 'SkidanovAlex/CtrlK'
