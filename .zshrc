@@ -111,46 +111,36 @@ zle-keymap-select () {
         PS_VIMODE="[%{$fg[red]%}cmd%{$reset_color%}]"
 #        PS1="$PS_VIMODE%{$fg[yellow]%}%% %{$reset_color%}"
 
-#        if [[ $TMUX != '' ]]; then
-#            printf '\033Ptmux;\033\033]12;#cb4b16\007\033\\'
-#        elif [ $TERM = "screen" ]; then
-#            echo -ne '\033P\033]12;#cb4b16\007\033\\'
-#        elif [ $TERM != "linux" ]; then
-#            echo -ne "\033]12;#cb4b16\007"
-#        fi
+#         # set cursor color
+#         if [[ $TMUX != '' ]]; then
+#             printf '\033Ptmux;\033\033]12;red\007\033\\'
+#         elif [ $TERM = "screen" ]; then
+#             echo -ne '\033P\033]12;#FF3333\007\033\\'
+#         elif [ $TERM != "linux" ]; then
+#             echo -ne "\033]12;#FF3333\007"
+#         fi
     else
         PS_VIMODE="[%{$fg[green]%}ins%{$reset_color%}]"
 #        PS1="$PS_VIMODE%{$fg[yellow]%}%% %{$reset_color%}"
 
-#        if [[ $TMUX != '' ]]; then
-#            printf '\033Ptmux;\033\033]12;#586e75\007\033\\'
-#        elif [ $TERM = "screen" ]; then
-#            echo -ne '\033P\033]12;#586e75\007\033\\'
-#        elif [ $TERM != "linux" ]; then
-#            echo -ne "\033]12;#586e75\007"
-#        fi
+#         # set cursor color
+#         if [[ $TMUX != '' ]]; then
+#             printf '\033Ptmux;\033\033]12;green\007\033\\'
+#         elif [ $TERM = "screen" ]; then
+#             echo -ne '\033P\033]12;#99FF33\007\033\\'
+#         elif [ $TERM != "linux" ]; then
+#             echo -ne "\033]12;#99FF33\007"
+#         fi
     fi
 
     zle reset-prompt
-};
-
-precmd() { print -rP "$PS_LOCALE $PS_HOSTNAME ${PS_TMUX}$PS_CURDIR $(git_prompt)" }
-PS1="$PS_VIMODE%{$fg[yellow]%}%% %{$reset_color%}"
-
-zle-line-init () {
-    zle -K viins
-
-#    if [ $TERM = "screen" ]; then
-#        echo -ne '\033P\033]12;#586e75\007\033\\'
-#    elif [ $TERM != "linux" ]; then
-#        echo -ne "\033]12;#586e75\007"
-#    fi
-
-    zle reset-prompt
-};
+    zle -R
+}
 
 zle -N zle-keymap-select
-zle -N zle-line-init
+
+precmd() { print -rP "$PS_LOCALE $PS_HOSTNAME ${PS_TMUX}$PS_CURDIR $(git_prompt)" }
+PS1='$PS_VIMODE%{$fg[yellow]%}%% %{$reset_color%}'
 
 # end set indicator vi-mode
 
