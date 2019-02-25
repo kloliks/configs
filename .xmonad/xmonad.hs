@@ -56,7 +56,7 @@ myLightWhite   = "#fdf6e3"
 main = do
 --  xmproc <- spawnPipe "/usr/bin/xmobar ~/.config/xmobar/xmobar.hs"
 --  xmproc <- spawnPipe "/tmp/xmonad.log"
---  xmproc <- spawnPipe "/home/yos/projects/test-cpp/test.a"
+--  xmproc <- spawnPipe "/home/klolik/projects/test-cpp/test.a"
   xmonad $ ewmh $ fullscreenSupport defaultConfig
       { terminal        = myTerminal
       , layoutHook      = myLayout
