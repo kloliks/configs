@@ -137,7 +137,15 @@ zle-keymap-select () {
     zle -R
 }
 
+zle-line-init () {
+    zle -K viins
+
+    zle reset-prompt
+    zle -R
+}
+
 zle -N zle-keymap-select
+zle -N zle-line-init
 
 precmd() { print -rP "$PS_LOCALE $PS_HOSTNAME ${PS_TMUX}$PS_CURDIR $(git_prompt)" }
 PS1='$PS_VIMODE%{$fg[yellow]%}%% %{$reset_color%}'
